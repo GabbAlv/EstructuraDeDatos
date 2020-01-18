@@ -1,0 +1,144 @@
+////////////// CLASE NODO///////////////////
+package ArbolesDeBusqueda;
+public class Nodo {
+int dato;
+Nodo Izquierda;
+Nodo Derecha;
+}
+////////////////////////////////////////////
+
+////////////// CLASE PRINCIPAL///////////////////
+package ArbolesDeBusqueda;
+
+import java.util.Scanner;
+
+public class ArbolesDeBusqueda {
+Scanner sc = new Scanner(System.in);   
+Nodo Raiz=null
+
+public void Insertar(int dat){
+          Nodo nuevo;
+          nuevo = new Nodo ();
+          nuevo.dato = dat;
+          nuevo.Izquierda = null;
+          nuevo.Derecha = null;
+          if (Raiz == null)
+              Raiz = nuevo;
+          else
+          {
+              Nodo anterior = null, Arbol;
+              Arbol = Raiz;
+              while (Arbol != null){
+                  anterior = Arbol;
+                  if (dat < Arbol.dato){
+                      Arbol = Arbol.Izquierda;
+                  }else{
+                      Arbol = Arbol.Derecha;
+                  }
+              }
+              if (dat < anterior.dato){
+                  anterior.Izquierda = nuevo;
+              }else{
+                  anterior.Derecha = nuevo;
+              }
+          }
+      }
+
+public void Menu(){
+ArbolesDeBusqueda aux = new ArbolesDeBusqueda();
+int menu;
+do{
+System.out.println("*******************");
+System.out.println("1. Insertar\n"
+                 + "2. Mostrar Arbol\n"
+                 + "3. Salir\n");
+System.out.print("Ingrese => ");
+menu=sc.nextInt();
+System.out.println("*******************");
+       switch(menu){
+    case 1:
+        System.out.print("Ingrese Numero=> ");
+        int dato = sc.nextInt();
+        aux.Insertar(dato);
+        System.out.print("\n\n");
+        break;
+    case 2:
+        System.out.println("\n ***Imprimiendo PreOrden***");
+        aux.MostrarPre();
+        System.out.println("\n ***Imprimiendo Con Niveles***");
+        aux.ImprimirConNivel();
+        System.out.println("\n ***Imprimiendo EntreOrden***");
+        aux.MostrarEntre();
+        System.out.println("\n ***Imprimiendo PostOrden***");
+        aux.MostrarPost();
+        System.out.print("\n");
+        break;
+       }
+   }while(menu!=3);
+}
+
+
+private void MostrarPre (Nodo Arbol){
+if (Arbol != null){
+System.out.print(Arbol.dato + " ");
+MostrarPre(Arbol.Izquierda);
+MostrarPre(Arbol.Derecha);
+    }
+}
+
+
+public void MostrarPre(){
+          MostrarPre(Raiz);
+          System.out.println();
+}
+
+
+private void MostrarEntre(Nodo Arbol){
+if (Arbol != null){
+MostrarEntre (Arbol.Izquierda);
+System.out.print(Arbol.dato + " ");
+MostrarEntre (Arbol.Derecha);  
+    }
+}
+
+
+public void MostrarEntre(){
+MostrarEntre(Raiz);
+System.out.println();
+}
+
+
+private void ImprimirConNivel (Nodo Arbol,int nivel)  {
+if(Arbol != null){ 
+    ImprimirConNivel(Arbol.Izquierda,nivel+1);
+    System.out.print(Arbol.dato + " ("+nivel+") - ");
+    ImprimirConNivel(Arbol.Derecha,nivel+1);
+    }
+}
+
+
+public void ImprimirConNivel () {
+        ImprimirConNivel (Raiz,0);
+        System.out.println();
+}
+
+
+private void MostrarPost(Nodo Arbol){
+if (Arbol != null){
+MostrarPost (Arbol.Izquierda);
+MostrarPost (Arbol.Derecha);
+System.out.print(Arbol.dato + " ");
+          }
+}
+
+
+public void MostrarPost(){
+MostrarPost(Raiz);
+System.out.println();
+}
+
+
+public static void main(String[] args) {
+ArbolesDeBusqueda obj = new ArbolesDeBusqueda();
+obj.Menu();
+    }
