@@ -1,0 +1,247 @@
+//////////CLASE NODO///////////////////
+package LISTAS;
+public class Nodo {
+Nodo antes;
+Nodo despues;
+char dato;
+}
+//////////////////////////////////////
+
+//////////CLASE PRINCIPAL///////////////////
+package LISTAS;
+import java.util.Scanner;
+public class LISTAS {
+    Nodo inicio=null;
+    Nodo fin=null;
+    Nodo inicio1=null;
+    Nodo fin1=null;
+    Nodo inicio2=null;
+    Nodo fin2=null;
+    Nodo inicio3=null;
+    Nodo fin3=null;
+    Nodo inicio4=null;
+    Nodo fin4=null;    
+    
+Scanner sc = new Scanner(System.in);    
+
+public void Insertar_Inicio(){
+Nodo nuevo = new Nodo();
+char letra;
+System.out.print(" **Ingrese el dato: ");
+nuevo.dato = sc.next().charAt(0);
+letra=nuevo.dato;
+    if(letra>=48&&letra<=57){
+        if(inicio==null){
+            inicio=nuevo;
+        }else{
+            nuevo.despues=inicio;
+            inicio.antes=nuevo;
+            inicio=nuevo;
+        }
+System.out.println("**Dato: <"+letra+"> guardado en Numeros y enviado al inicio**");
+
+    }else if(letra>=97&&letra<=122){
+        if(inicio1==null){
+            inicio1=nuevo;
+        }else{
+            nuevo.despues=inicio1;
+            inicio1.antes=nuevo;
+            inicio1=nuevo;
+        }
+System.out.println("**Dato: <"+letra+"> guardado en Minusculas y enviado al inicio**");
+
+    }else if(letra>=65&&letra<=90){
+        if(inicio2==null){
+            inicio2=nuevo;
+        }else{
+            nuevo.despues=inicio2;
+            inicio2.antes=nuevo;
+            inicio2=nuevo;
+        }
+System.out.println("**Dato: <"+letra+"> guardado en Mayusculas y enviado al inicio**");
+
+    }else{
+        if(inicio3==null){
+            inicio3=nuevo;
+        }else{
+            nuevo.despues=inicio3;
+            inicio3.antes=nuevo;
+            inicio3=nuevo;
+        }
+System.out.println("**Dato: <"+letra+"> guardado en Caracteres y enviado al inicio**");
+    }
+}
+
+public void Insertar_Final(){
+Nodo nuevo = new Nodo();
+char letra;
+System.out.print(" **Ingrese el dato: ");
+nuevo.dato = sc.next().charAt(0);
+letra=nuevo.dato;
+if(letra>=48&&letra<=57){
+    if(inicio == null){
+            inicio = nuevo;
+    }else{
+            Nodo temporal = inicio;
+        while(temporal.despues != null){
+            temporal = temporal.despues;
+            }
+            temporal.despues=nuevo;
+            nuevo.antes=temporal;
+    }
+    System.out.println("**Dato: <"+letra+"> guardado en Numeros y enviado al final**");
+    
+}else if(letra>=97&&letra<=122){
+    if(inicio1 == null){
+            inicio1 = nuevo;
+    }else{
+            Nodo temporal = inicio1;
+        while(temporal.despues != null){
+            temporal = temporal.despues;
+            }
+            temporal.despues=nuevo;
+            nuevo.antes=temporal;
+    }
+    System.out.println("**Dato: <"+letra+"> guardado en Minusculas y enviado al final**");
+    
+}else if(letra>=65&&letra<=90){
+    if(inicio2 == null){
+            inicio2 = nuevo;
+    }else{
+            Nodo temporal = inicio2;
+        while(temporal.despues != null){
+            temporal = temporal.despues;
+            }
+            temporal.despues=nuevo;
+            nuevo.antes=temporal;
+    }
+    System.out.println("**Dato: <"+letra+"> guardado en Mayusculas y enviado al final**");
+    
+}else{
+    if(inicio3 == null){
+            inicio3 = nuevo;
+    }else{
+            Nodo temporal = inicio3;
+        while(temporal.despues != null){
+            temporal = temporal.despues;
+            }
+            temporal.despues=nuevo;
+            nuevo.antes=temporal;
+    }
+    System.out.println("**Dato: <"+letra+"> guardado en Caracteres y enviado al final**");
+    }
+}
+
+public void Mostrar_Numeros(){
+System.out.println("\n*******************"
+                +"\n      Numeros     \n"
+                  +"*******************");
+Nodo temporal = inicio;
+if(inicio != null){
+    while(temporal != null){
+    System.out.println(""+temporal.dato);
+    temporal = temporal.despues;
+    } 
+}else{
+System.out.println("Lista vacia");
+     }
+}
+
+public void Mostrar_LetrasMinusculas(){
+System.out.println("\n*******************"
+                +"\n Letras Minusculas\n"
+                  +"*******************");
+Nodo temporal = inicio1;
+if(inicio1 != null){
+    while(temporal != null){
+    System.out.println(""+temporal.dato);
+    temporal = temporal.despues;
+    } 
+}else{
+System.out.println("Lista vacia");
+     }
+}
+
+public void Mostrar_LetrasMayusculas(){
+System.out.println("\n*******************"
+                +"\n Letras Mayusculas\n"
+                  +"*******************");
+Nodo temporal = inicio2;
+if(inicio2 != null){
+    while(temporal != null){
+    System.out.println(""+temporal.dato);
+    temporal = temporal.despues;
+    } 
+}else{
+System.out.println("Lista vacia");
+     }
+}           
+
+public void Mostrar_Caracteres(){
+System.out.println("\n*******************"
+                +"\n     Caracteres    \n"
+                  +"*******************");
+Nodo temporal = inicio3;
+if(inicio3 != null){
+    while(temporal != null){
+    System.out.println(""+temporal.dato);
+    temporal = temporal.despues;
+    } 
+}else{
+System.out.println("Lista vacia");
+     }
+}
+
+public static void main(String[] args) {
+LISTAS aux = new LISTAS();   
+Scanner sc = new Scanner(System.in);
+int menu;
+do{
+System.out.println("1. Insertar Primero");
+System.out.println("2. Insertar Ultimo");
+System.out.println("3. Mostrar");
+System.out.println("4. Salir");
+System.out.print("Ingrese => ");
+menu=sc.nextInt();
+       switch(menu){
+    case 1:
+        aux.Insertar_Inicio();
+        break;
+    case 2:
+        aux.Insertar_Final();
+        break;
+    case 3:
+        int sub_menu;
+        System.out.println("\n1. Mostrar Lista Numeros"
+                         + "\n2. Mostrar Lista Minusculas"
+                         + "\n3. Mostrar Lista Mayusculas"
+                         + "\n4. Mostrar Lista Caracteres"
+                         + "\n5. Mostrar Todas las Listas");
+        System.out.print("Ingrese => ");
+        sub_menu=sc.nextInt();
+        switch(sub_menu){
+            case 1:
+                aux.Mostrar_Numeros();
+                break;
+            case 2:
+                aux.Mostrar_LetrasMinusculas();
+                break;
+            case 3:
+                aux.Mostrar_LetrasMayusculas();
+                break;    
+            case 4:
+                aux.Mostrar_Caracteres();
+                break;
+            case 5:
+                aux.Mostrar_Numeros();
+                aux.Mostrar_LetrasMinusculas();
+                aux.Mostrar_LetrasMayusculas();
+                aux.Mostrar_Caracteres();
+                break;    
+        }
+        System.out.print("\n\n");
+        break;
+    }
+}while(menu!=4);
+    }   
+}
